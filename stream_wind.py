@@ -34,8 +34,7 @@ def opensocket():
 # This function is called periodically from FuncAnimation
 def animate(i, xs, ys):
 
-    # Read temperature (Celsius) from TMP102
-    winds = round(opensocket(), 2)
+     winds = round(opensocket(), 2)
 
     # Add x and y to lists
     xs.append(dt.datetime.now().strftime('%H:%M:%S.%f'))
