@@ -2,11 +2,8 @@ import datetime as dt
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from websocket import create_connection
-from urllib.request import urlopen
 import json
-import requests as req
-import http.client, urllib
-import time
+
 
 # Create figure for plotting
 fig = plt.figure()
@@ -22,16 +19,17 @@ station_id = "[TOKEN]"
 
 
 
+
 def opensocket():
-	websock = create_connection('wss://ws.weatherflow.com/swd/data?api_key=' + personal_token)
-	temp_rs =  websock.recv()
+	websock     	= create_connection('wss://ws.weatherflow.com/swd/data?api_key=' + personal_token)
+	temp_rs     	=  websock.recv()
 	websock.send('{"type":"listen_start",' + ' "device_id":' + tempest_ID + ',' + ' "id":"Tempest"}')
-	temp_rs =  websock.recv()
-	temp_rs =  websock.recv()
+	temp_rs     	=  websock.recv()
+	temp_rs     	=  websock.recv()
 	websock.close()
-	json_obj 		= json.loads(temp_rs)
-	windspeed	  = json_obj['obs'][0][3]
-	return jWW	
+	json_obj 	= json.loads(temp_rs)
+	windspeed	= json_obj['obs'][0][3]
+	return windspeed	
 
 # This function is called periodically from FuncAnimation
 def animate(i, xs, ys):
